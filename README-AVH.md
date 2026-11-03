@@ -106,11 +106,33 @@ El proyecto debe quedar en el home del usuario `pi`:
 └── README.md
 ```
 
-Tienes tres formas de subirlo. La más cómoda para editar después es SSH/SCP;
-la más sencilla para una sola entrega es subir un `.tar.gz` con el visor de
-archivos.
+Tienes cuatro formas de subirlo. La más simple es clonar el repositorio
+público; si la Pi no tiene internet, sube un `.tar.gz` con el visor de archivos.
 
-### Opción A — Visor de archivos de AVH (la más simple)
+### Opción A — Clonar desde GitHub (la más simple)
+
+El proyecto ya está publicado en:
+
+<https://github.com/Carprez10/practica_erlang_otp>
+
+En la consola de la Pi:
+
+```bash
+sudo apt-get update
+sudo apt-get install -y git
+cd ~
+git clone https://github.com/Carprez10/practica_erlang_otp.git
+cd practica_erlang_otp
+```
+
+Si actualizas el proyecto en tu máquina, en la Pi basta con:
+
+```bash
+cd ~/practica_erlang_otp
+git pull
+```
+
+### Opción B — Visor de archivos de AVH (sin internet en la Pi)
 
 1. En tu máquina local, empaqueta el proyecto:
 
@@ -132,7 +154,7 @@ archivos.
    ls
    ```
 
-### Opción B — SSH + SCP (recomendada para trabajar cómodo)
+### Opción C — SSH + SCP (recomendada para trabajar cómodo)
 
 AVH tiene una función **Quick Connect** que te deja entrar por SSH desde tu
 computadora sin VPN.
@@ -178,26 +200,21 @@ computadora sin VPN.
    Con SSH puedes editar desde tu editor local (por ejemplo VS Code Remote
    SSH) o usar `nano`/`vim` dentro de la Pi.
 
-### Opción C — GitHub
+### Opción D — Git con tu propio repositorio
 
-Si prefieres Git:
+Si más adelante quieres usar otro repositorio:
 
 ```bash
 # En tu máquina local, dentro del proyecto:
-git init
-git add .
-git commit -m "Práctica Erlang/OTP"
-git remote add origin https://github.com/TU_USUARIO/practica_erlang_otp.git
+git remote set-url origin https://github.com/TU_USUARIO/TU_REPO.git
 git push -u origin main
 ```
 
 En la Pi:
 
 ```bash
-sudo apt-get update
-sudo apt-get install -y git
-git clone https://github.com/TU_USUARIO/practica_erlang_otp.git
-cd practica_erlang_otp
+git clone https://github.com/TU_USUARIO/TU_REPO.git
+cd TU_REPO
 ```
 
 ---

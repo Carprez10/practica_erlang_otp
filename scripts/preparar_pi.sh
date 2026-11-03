@@ -54,6 +54,16 @@ esac
 echo "============================================================"
 echo " 2. Instalando Erlang y herramientas del sistema"
 echo "============================================================"
+
+# Debian 11 (bullseye) terminó su soporte en agosto de 2026 y sus
+# paquetes se movieron a archive.debian.org. La imagen de AVH conserva
+# listas viejas y apt devuelve 404. Este arreglo es idempotente.
+if [ "${VERSION_CODENAME:-}" = "bullseye" ] && \
+   ! grep -qs 'archive.debian.org' /etc/apt/sources.list /etc/apt/sources.list.d/*.list 2>/dev/null; then
+    warn "Debian 11 está en archive.debian.org; ajustando repositorios..."
+    "${SCRIPT_DIR}/arreglar_apt_bullseye.sh"
+fi
+
 info "Actualizando apt..."
 sudo apt-get update -qq
 

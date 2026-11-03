@@ -367,6 +367,7 @@ Pero lo importante es verificar en el panel de AVH que quedó **apagada**.
 | `Unable to locate package rebar3` | Debian 11 no tiene ese paquete. Usa `./scripts/preparar_pi.sh`, que descarga rebar3 de GitHub. |
 | `rebar3: command not found` | Ejecuta `source ~/.bashrc` o `export PATH="$HOME/.local/bin:$PATH"`. |
 | `erlang-nox` no se instala | Revisa Internet con `ping -c 3 deb.debian.org` y corre `sudo apt-get update`. |
+| apt devuelve `404 Not Found` para `git` o `erlang-nox` | Debian 11 está archivado. Ejecuta `./scripts/arreglar_apt_bullseye.sh`; `preparar_pi.sh` también lo detecta y lo aplica solo. |
 | `rebar3 eunit` falla con errores raros | Revisa `erl -version`; si es OTP 23 y el código usara algo nuevo, instala OTP 27 con la sección 6. |
 | `libwxgtk3.2-dev` no existe | No lo necesitas: el script de OTP 27 compila con `--without-wx`. |
 | La compilación de OTP se queda sin memoria | Usa `JOBS=2 ./scripts/instalar_otp27.sh` o `JOBS=2 make`. |
